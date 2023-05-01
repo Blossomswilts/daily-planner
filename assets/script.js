@@ -1,22 +1,49 @@
 //_________Global Variables______________________________
-const saveButton = document.querySelectorAll(".saveBtn");
+let saveButton = document.querySelectorAll(".saveBtn");
 let currentDay = document.getElementById("currentDay");
+let textEnter = document.querySelectorAll(".description");
 
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
+//________________________local storage set from save___________________________________
+  //This will apply the event listener for each save button targeting parent ID
+  //value will target sibling element of id's value
+  $(saveButton).on('click', function() {
+    //This is a reference to every single button.
+    // console.log(this);
+    let id = $(this).parent().attr('id');
+    // console.log(id);
+    // console.log( $(this).siblings());
+    //.val is specific to input or textarea only.
+    let value = $(this).siblings('.description').val();
+    //this will check to seee if the saved button was already pressed
+    let saved = $(this).data('saved');
 
-  //________Change color based on time function______________________
+    if (saved) {
+      localStorage.removeItem(id);
+      //This will set data to false if an item is removed from the local storage.
+      $(this).data('saved', false);
+    } else {
+    // Store the value in local storage with the ID as the key
+    localStorage.setItem(id, JSON.stringify(value));
+    //this will set saved to true if it was set into local storage
+    $(this).data('saved', true);
+    // console.log(id + value);
+    }
+  });
+
+//_________________________local storage get___________________________________________
+  //This will get any items and set it to its appropriate place.
+  // Loop through all the elements with the "time-block" class
+$('.time-block').each(function() {
+  // Get the ID of the current element
+  let id = $(this).attr('id');
+  // Get the value from local storage using the ID as the key
+  let value = JSON.parse(localStorage.getItem(id));
+  // Set the value of the textarea to the value retrieved from local storage
+  $(this).find('.description').val(value);
+});
+
+//_________________________color selector based on time_________________________________  
   let current = dayjs()
   let hourNow = current.hour();
   $('.time-block').each(function() {
@@ -27,7 +54,7 @@ $(function () {
       $(this).addClass("past");
       $(this).removeClass("future");
       $(this).removeClass("present");
-    } else if (hourNow == timeElement) {
+    } else if (hourNow === timeElement) {
       $(this).removeClass("past");
       $(this).removeClass("future");
       $(this).addClass("present");
@@ -44,4 +71,3 @@ $(function () {
   currentDay = dayjs();
   $('#currentDay').text(currentDay.format('MMM DD, YYYY'));
 });
-
