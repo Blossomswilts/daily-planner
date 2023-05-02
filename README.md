@@ -13,10 +13,9 @@
 * Using loops with if statements, follow by dayjs to allow the program to know what hour block it should be in, and display the classes accordingly. 
 
 
+##Screenshot(s) of application
 
-
-![Daily Planner]
-(https://user-images.githubusercontent.com/117021869/235739710-258412b9-8d1f-4c46-bcd2-e41095980a0a.jpg)
+![Daily Planner](https://user-images.githubusercontent.com/117021869/235739710-258412b9-8d1f-4c46-bcd2-e41095980a0a.jpg)
 
 
 ## Resources:
