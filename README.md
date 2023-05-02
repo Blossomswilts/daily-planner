@@ -23,7 +23,7 @@
 * Ladislav Jarabek : Coding Bootcamp Instructor
 * Juan Delgado : Coding Bootcmap Tutor
 
-Link to deployed Website: https://blossomswilts.github.io/quiz/
+Link to deployed Website: https://blossomswilts.github.io/daily-planner/
 
 mit
 
