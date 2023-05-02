@@ -14,7 +14,7 @@
 
 
 
-##Screenshot(s) of application
+
 ![Daily Planner]
 (https://user-images.githubusercontent.com/117021869/235739710-258412b9-8d1f-4c46-bcd2-e41095980a0a.jpg)
 
